@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "872796251085",
+    "project_id": "temukerja-8d811",
+    "storage_bucket": "temukerja-8d811.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:872796251085:android:e773b499a9b7e344991a84",
+        "android_client_info": {
+          "package_name": "com.example.temukerja_application"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9gFIn2ny0-RmK5fLPlSc8-pbqA8UpYY8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
