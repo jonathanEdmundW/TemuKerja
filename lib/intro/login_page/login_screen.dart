@@ -1,11 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:temukerja_application/forget_password_page/forget_password.dart';
+import 'package:temukerja_application/intro/forget_password_page/forget_password.dart';
+import 'package:temukerja_application/intro/signup_page/signup_screen.dart';
 import 'package:temukerja_application/service/global_methods.dart';
 
-import '../service/global_variables.dart';
+import '../../service/global_variables.dart';
 
 class Login extends StatefulWidget {
 
@@ -100,7 +101,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin{
             alignment: FractionalOffset(_animation.value, 0),
           ),
           Container(
-            color: Colors.black38,
+            color: Colors.black26,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 80),
               child: ListView(
@@ -228,6 +229,34 @@ class _LoginState extends State<Login> with TickerProviderStateMixin{
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 40,),
+                        Center(
+                          child: RichText(
+                            text: TextSpan(
+                              children: [
+                                const TextSpan(
+                                  text: 'Do not have an account?',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                const TextSpan(text: '    '),
+                                TextSpan(
+                                  recognizer: TapGestureRecognizer()..onTap = () => Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp())),
+                                  text: 'Sign-up',
+                                  style: const TextStyle(
+                                    color: Colors.cyanAccent,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    fontStyle: FontStyle.italic,
                                   ),
                                 ),
                               ],
