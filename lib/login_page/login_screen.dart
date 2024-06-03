@@ -1,6 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:temukerja_application/forget_password_page/forget_password.dart';
+import 'package:temukerja_application/service/global_methods.dart';
 
 import '../service/global_variables.dart';
 
@@ -21,7 +24,9 @@ class _LoginState extends State<Login> with TickerProviderStateMixin{
 
   final _loginFormKey = GlobalKey<FormState>();
   final FocusNode _passFocusNode = FocusNode();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   var _obscureText = true;
+  var _isLoading = false;
 
   @override
   void dispose() {
@@ -46,6 +51,35 @@ class _LoginState extends State<Login> with TickerProviderStateMixin{
     });
     _animationController.forward();
     super.initState();
+  }
+
+  void _submitFormOnLogin() async
+  {
+    final isValid = _loginFormKey.currentState!.validate();
+    if(isValid)
+    {
+      setState(() {
+        _isLoading = true;
+      });
+      try
+      {
+        await _auth.signInWithEmailAndPassword(
+            email: _emailTextController.text.trim().toLowerCase(),
+            password: _passTextController.text.trim(),
+        );
+        Navigator.canPop(context) ? Navigator.pop(context) : null;
+      }catch (error)
+      {
+        setState(() {
+          _isLoading = false;
+        });
+        GlobalMethod.showErrorDialog(error: error.toString(), ctx: context);
+        print('Error occurred $error');
+      }
+    }
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   @override
@@ -154,6 +188,49 @@ class _LoginState extends State<Login> with TickerProviderStateMixin{
                             ),
                             errorBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.red)
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 15,),
+                        Align(
+                          alignment: Alignment.bottomRight,
+                          child: TextButton(
+                            onPressed: ()
+                            {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => ForgetPassword()));
+                            },
+                            child: const Text(
+                              'Forget Password?',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 17,
+                                fontStyle: FontStyle.italic,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 10,),
+                        MaterialButton(
+                          onPressed: _submitFormOnLogin,
+                          color: Colors.cyan,
+                          elevation: 8,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(13),
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 16),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Login',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
