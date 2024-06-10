@@ -9,7 +9,7 @@ import 'package:temukerja_application/service/global_methods.dart';
 import '../../service/global_variables.dart';
 
 class Login extends StatefulWidget {
-
+  const Login({super.key});
 
   @override
   State<Login> createState() => _LoginState();
@@ -26,12 +26,15 @@ class _LoginState extends State<Login> with TickerProviderStateMixin{
   final _loginFormKey = GlobalKey<FormState>();
   final FocusNode _passFocusNode = FocusNode();
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  var _obscureText = true;
-  var _isLoading = false;
+  bool _obscureText = true;
+  bool _isLoading = false;
 
   @override
   void dispose() {
     _animationController.dispose();
+    _emailTextController.dispose();
+    _passTextController.dispose();
+    _passFocusNode.dispose();
     super.dispose();
   }
 
@@ -89,7 +92,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin{
       body: Stack(
         children: [
           CachedNetworkImage(
-            imageUrl: login_url_image,
+            imageUrl: loginUrlImage,
             placeholder: (context, url) => Image.asset(
                 'assets/images/office_building.jpg',
                 fit: BoxFit.fill,
@@ -153,7 +156,8 @@ class _LoginState extends State<Login> with TickerProviderStateMixin{
                           keyboardType: TextInputType.visiblePassword,
                           controller: _passTextController,
                           obscureText: !_obscureText, // change it dynamically
-                          validator: (value){
+                          validator: (value)
+                          {
                             if(value!.isEmpty || value.length < 7)
                             {
                               return 'Please enter a valid password (length > 7)';
