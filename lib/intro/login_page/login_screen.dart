@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, use_build_context_synchronously
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
@@ -27,6 +29,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin{
   final FocusNode _passFocusNode = FocusNode();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   bool _obscureText = true;
+  // ignore: unused_field
   bool _isLoading = false;
 
   @override
@@ -202,7 +205,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin{
                           child: TextButton(
                             onPressed: ()
                             {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => ForgetPassword()));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => const ForgetPassword()));
                             },
                             child: const Text(
                               'Forget Password?',
@@ -254,7 +257,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin{
                                 ),
                                 const TextSpan(text: '    '),
                                 TextSpan(
-                                  recognizer: TapGestureRecognizer()..onTap = () => Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp())),
+                                  recognizer: TapGestureRecognizer()..onTap = () => Navigator.push(context, MaterialPageRoute(builder: (context) => const SignUp())),
                                   text: 'Sign-up',
                                   style: const TextStyle(
                                     color: Colors.cyanAccent,

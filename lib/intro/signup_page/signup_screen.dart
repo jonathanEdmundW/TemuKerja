@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -12,6 +14,7 @@ import 'package:temukerja_application/service/global_methods.dart';
 // import 'package:temukerja_application/intro/login_page/login_screen.dart';
 
 import '../../service/global_variables.dart';
+import '../login_page/login_screen.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -188,6 +191,7 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin {
           'createdAt': Timestamp.now(),
         });
         Navigator.canPop(context) ? Navigator.of(context) : null;
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const Login()));
       }catch (error){
         setState(() {
           _isLoading = false;
