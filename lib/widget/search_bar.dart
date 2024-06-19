@@ -1,18 +1,16 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:temukerja_application/user_state.dart';
 
-class JobListScreen extends StatefulWidget {
-  const JobListScreen({super.key});
+import '../service/global_methods.dart';
+import 'bottom_nav_bar.dart';
+
+class SearchBarWidget extends StatefulWidget {
+  const SearchBarWidget({super.key});
 
   @override
-  State<JobListScreen> createState() => _JobListScreenState();
+  State<SearchBarWidget> createState() => _SearchBarWidgetState();
 }
 
-class _JobListScreenState extends State<JobListScreen> {
-
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-
+class _SearchBarWidgetState extends State<SearchBarWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,7 +25,7 @@ class _JobListScreenState extends State<JobListScreen> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-          title: const Text('Main Menu',
+          title: const Text('Kontrol',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.white,
@@ -48,16 +46,15 @@ class _JobListScreenState extends State<JobListScreen> {
           ),
           actions: <Widget>[
             IconButton(
-              icon: const Icon(Icons.logout, size: 35,),
-              tooltip: 'Go to the next page',
+              icon: const Icon(Icons.logout, size: 35, color: Colors.black,),
+              tooltip: 'Go back to login menu',
               onPressed: () {
-                _auth.signOut();
-                Navigator.canPop(context) ? Navigator.pop(context) : null;
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const UserState()));
+                GlobalMethod.logout(context: context);
               },
             ),
           ],
         ),
+        bottomNavigationBar: BottomNavBar(indexNum: 3,),
       ),
     );
   }
