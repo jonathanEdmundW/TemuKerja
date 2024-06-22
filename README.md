@@ -1,6 +1,6 @@
 # temukerja_application
 
-A new Flutter project.
+A Flutter based project based on job search application.
 
 ## Getting Started
 
