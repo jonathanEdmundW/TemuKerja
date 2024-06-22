@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:temukerja_application/main_page/Jobs/search_job.dart';
 import 'package:temukerja_application/service/global_methods.dart';
 import 'package:temukerja_application/widget/job_widget.dart';
-import 'package:temukerja_application/widget/search_bar.dart';
 
 import '../../widget/bottom_nav_bar.dart';
 
@@ -16,7 +16,6 @@ class JobListScreen extends StatefulWidget {
 class _JobListScreenState extends State<JobListScreen> {
 
   String? jobCategoryFilter;
-
 
   _showTaskCategoriesDialog({required Size size}){
     showDialog(
@@ -98,6 +97,14 @@ class _JobListScreenState extends State<JobListScreen> {
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Persistent persistentObject = Persistent();
+    persistentObject.getData();
+  }
+
+  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
@@ -128,6 +135,13 @@ class _JobListScreenState extends State<JobListScreen> {
             icon: const Icon(Icons.filter_list_rounded, color: Colors.black54,size: 40,),
           ),
           actions: <Widget>[
+            IconButton(
+              onPressed: (){
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (c) => const SearchBarWidget()));
+              },
+              icon: const Icon(Icons.search_outlined, color: Colors.black, size: 35,),
+            ),
+            const SizedBox(width: 5,),
             IconButton(
               icon: const Icon(Icons.logout, size: 35, color: Colors.black,),
               tooltip: 'Go back to login menu',
@@ -183,12 +197,6 @@ class _JobListScreenState extends State<JobListScreen> {
               );
             }
           ),
-        // body: IconButton(
-        //   onPressed: (){
-        //     Navigator.pushReplacement(context, MaterialPageRoute(builder: (c) => const SearchBarWidget()));
-        //   },
-        //   icon: const Icon(Icons.search_outlined, color: Colors.white,),
-        // ),
         bottomNavigationBar: BottomNavBar(indexNum: 0,),
       ),
     );

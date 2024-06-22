@@ -1,4 +1,5 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:temukerja_application/main_page/profile_screen.dart';
 import 'package:temukerja_application/main_page/Jobs/uploadjob_screen.dart';
@@ -43,7 +44,10 @@ class BottomNavBar extends StatelessWidget {
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const UploadJob()));
         }
         else if(index == 3){
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const Profile()));
+          final FirebaseAuth auth = FirebaseAuth.instance;
+          final User? user = auth.currentUser;
+          final String uid = user!.uid;
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => Profile(userID: uid,)));
         }
       },
     );

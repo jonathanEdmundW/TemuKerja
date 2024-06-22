@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:temukerja_application/user_state.dart';
+
+import 'global_variables.dart';
 
 class GlobalMethod
 {
@@ -125,4 +128,13 @@ class Persistent{
     'Design',
     'Etc',
   ];
+
+  void getData() async{
+    final DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection('users').doc(FirebaseAuth.instance.currentUser!.uid)
+        .get();
+
+    name = userDoc.get('name');
+    userImage = userDoc.get('userImage');
+    address = userDoc.get('companyAddress');
+  }
 }

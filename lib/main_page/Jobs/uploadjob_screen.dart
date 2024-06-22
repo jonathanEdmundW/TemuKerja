@@ -314,7 +314,7 @@ class _UploadJobState extends State<UploadJob> {
           ),
           actions: <Widget>[
             IconButton(
-              icon: const Icon(Icons.logout, size: 35, color: Colors.white,),
+              icon: const Icon(Icons.logout, size: 35, color: Colors.black,),
               tooltip: 'Go back to login menu',
               onPressed: () {
                 GlobalMethod.logout(context: context);

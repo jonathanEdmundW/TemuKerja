@@ -4,3 +4,4 @@ String forgetPasswordUrlImage = 'https://images.unsplash.com/photo-1554232456-87
 String name = '';
 String userImage = '';
 String address = '';
+String defaultProfileIconURL = 'https://th.bing.com/th/id/OIP.puMo9ITfruXP8iQx9cYcqwHaGJ?rs=1&pid=ImgDetMain';

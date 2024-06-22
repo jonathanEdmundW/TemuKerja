@@ -28,7 +28,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin{
   final _loginFormKey = GlobalKey<FormState>();
   final FocusNode _passFocusNode = FocusNode();
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  bool _obscureText = true;
+  bool _obscureText = false;
   // ignore: unused_field
   bool _isLoading = false;
 
