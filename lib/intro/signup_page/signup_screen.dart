@@ -8,6 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:temukerja_application/service/global_methods.dart';
@@ -190,6 +191,12 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin {
           'companyAddress': _addressTextController.text,
           'createdAt': Timestamp.now(),
         });
+        await Fluttertoast.showToast(
+          msg: 'Account has been activated, please login',
+          toastLength: Toast.LENGTH_LONG,
+          backgroundColor: Colors.grey,
+          fontSize: 18.0,
+        );
         Navigator.canPop(context) ? Navigator.of(context) : null;
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const Login()));
       }catch (error){
