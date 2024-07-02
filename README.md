@@ -1,4 +1,4 @@
-# temukerja_application
+# TemuKerja
 
 A Flutter based project based on job search application.
 
