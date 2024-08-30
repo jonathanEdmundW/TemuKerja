@@ -1,10 +1,10 @@
 # TemuKerja
 
-A Flutter based project based on job search application.
+A Flutter based project based on job search application
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This is an application that uses the Dart port to help find jobs in Indonesia. This application has a simple UI so that it is easy for users to access and use it.
 
 A few resources to get you started if this is your first Flutter project:
 
